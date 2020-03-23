@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyledJumbo} from '../styles/components';
+import {Image} from './';
 
 const Jumbo = ({description}) => {
   return (
@@ -8,6 +9,7 @@ const Jumbo = ({description}) => {
   			<h2>¡Consigue el mejor swag exclusibo y especial de Platzi!</h2>
   			<small>{description}</small>
   		</div>
+  		<Image name="icon" />
   	</StyledJumbo>
   );
 };
