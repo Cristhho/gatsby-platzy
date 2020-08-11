@@ -17,7 +17,7 @@ const Layout = ({ children }) => (
         <Content>
           <main>{children}</main>
           <Footer>
-            con 💚 por
+            con <span role="img" aria-label="heart">💚</span> por
             <a href="https://platzi.com">Platzi</a>
           </Footer>
         </Content>
