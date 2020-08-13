@@ -1,11 +1,10 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from 'styled-components';
+import React from "react";
+import { graphql } from "gatsby";
 
-import { SEO, Jumbo } from "../components"
+import { SEO, Jumbo, Products } from "../components";
 
 export const query = graphql`
-		query GET_DESCRIPTION{
+		query GET_DATA{
 	  allSite {
 	    edges {
 	      node {
@@ -15,26 +14,34 @@ export const query = graphql`
 	      }
 	    }
 	  }
+	  allStripePrice {
+	    edges {
+	      node {
+	        id
+	        unit_amount
+	        product {
+	          name
+	          metadata {
+	            img
+	            description
+	            wear
+	            color
+	          }
+	        }
+	      }
+	    }
+	  }
 	}
 `
 
-const Button = styled.button`
-	width: 8rem;
-	background-color: #98ca3f;
-	color: ${props => props.color};
-	border: none;
-	border-radius: 10px;
-	&:hover{
-		transform: scale(1.3);
-	}
-`
-
-const IndexPage = ({data}) => (
-  <>
-    <SEO title="Home" />
-    <Jumbo description={data.allSite.edges[0].node.siteMetadata.description} />
-    <Button color="grey">Comprar</Button>
-  </>
-)
+const IndexPage = ({data}) => {
+  return (
+  	<>
+    	<SEO title="Home" />
+    	<Jumbo description={data.allSite.edges[0].node.siteMetadata.description} />
+    	<Products products={data.allStripePrice.edges} />
+  	</>
+  );
+};
 
 export default IndexPage
